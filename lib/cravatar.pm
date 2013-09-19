@@ -32,7 +32,7 @@ get '/:UUID.jpg' => sub {
     # we get an array of jpegPhotos, so let's grab the first one
     my $photo = $ret->[0];
     cache_set $uuid, $photo;
-    cache_page send_file(\$photo, content_type => 'image/jpeg');
+    send_file(\$photo, content_type => 'image/jpeg');
 };
 
 get '/upload' => sub {
