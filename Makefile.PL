@@ -17,6 +17,8 @@ WriteMakefile(
       : ()),
     PL_FILES            => {},
     PREREQ_PM => {
+        'Cache::Memcached'                          => 0,
+        'CHI::Driver::Memcached'                    => 0,
         'CHI::Driver::Memcached::libmemcached'      => 0,
         'Dancer'                                    => 1.3095,
         'Dancer::Plugin::Cache::CHI'                => 0,
