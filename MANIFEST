@@ -4,10 +4,12 @@ config.yml
 environments/development.yml
 environments/production.yml
 lib/cravatar.pm
+LICENSE
 Makefile.PL
 MANIFEST
 MANIFEST.SKIP
-MYMETA.json
-MYMETA.yml
 README.md
+views/error.tt
 views/layouts/main.tt
+views/success.tt
+views/upload.tt
