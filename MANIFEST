@@ -1,0 +1,13 @@
+.gitignore
+bin/app.pl
+config.yml
+environments/development.yml
+environments/production.yml
+lib/cravatar.pm
+Makefile.PL
+MANIFEST
+MANIFEST.SKIP
+MYMETA.json
+MYMETA.yml
+README.md
+views/layouts/main.tt
