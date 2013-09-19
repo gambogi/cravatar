@@ -1,0 +1,7 @@
+<h1>Hi, [% user %]</h1>
+
+<form method="post" action="/upload" enctype="multipart/form-data">
+    <label for="file">File (only .jpg)</label>
+    <input type="file" name="photo">
+    <input type="submit">
+</form>

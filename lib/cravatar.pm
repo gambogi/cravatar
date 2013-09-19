@@ -45,17 +45,29 @@ post '/upload' => sub {
             message => 'Must log in with webauth',
         };
 
+    # Grab the photo from the request
     my $file = request->upload('photo') or
         return template 'error', {
             message => 'Must provide a photo'
         };
 
+    # Check if the file is a jpeg
     if ($file->type ne "image/jpeg") {
         return template 'error', {
             message => 'Must provide a jpeg image'
         };
     }
 
+    # Remove previous picture from cache
+    my $uuid = ldap->search(
+        base => "ou=Users,dc=csh,dc=rit,dc=edu",
+        filter => "uid=$user",
+        attrs => [ 'entryUUID' ],
+        scope => 'one',
+    )->shift_entry->get('entryUUID')->[0];
+    cache_remove $uuid;
+
+    # Make the change to LDAP
     my $ret = $ldap->modify("uid=$user,ou=Users,dc=csh,dc=rit,dc=edu",
         changes => [
             replace => [
@@ -71,10 +83,6 @@ post '/upload' => sub {
         };
     }
 
-    redirect '/upload/success';
-};
-
-get '/upload/success' => sub {
     return template 'success', {
         message => 'Success!',
     };
