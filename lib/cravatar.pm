@@ -9,6 +9,10 @@ use Try::Tiny;
 
 our $VERSION = '0.5';
 
+get '/' => sub {
+    redirect '/upload';
+};
+
 get '/:UUID.jpg' => sub {
     my $uuid = param 'UUID';
     my $ret = cache_get $uuid;
@@ -33,8 +37,14 @@ get '/:UUID.jpg' => sub {
 
 get '/upload' => sub {
     my $user = request->header('X-WEBAUTH-USER');
+    unless ($user) {
+        return template 'error.tt', {
+            message => 'Must log in with webauth',
+        };
+    }
+
     return template 'upload.tt', {
-        user => $user // "worr",
+        user => $user,
     };
 };
 
