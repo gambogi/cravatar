@@ -1,7 +1,15 @@
-<h1>Hi, [% user %]</h1>
+<div class="row">
+<div class="small-3 offset-1 columns panel">
+        <h5 class="small">Current avatar</h5>
+        <img src="avatar.csh.rit.edu/[% uuid %].jpg">
+    </div>
 
-<form method="post" action="/upload" enctype="multipart/form-data">
+<div class="small-8 columns panel">    
+    <h2>Update your avatar</h2>
+    <form method="post" action="/upload" enctype="multipart/form-data">
     <label for="file">File (only .jpg)</label>
     <input type="file" name="photo">
     <input type="submit">
 </form>
+</div>
+</div>
