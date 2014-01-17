@@ -42,9 +42,18 @@ get '/upload' => sub {
             message => 'Must log in with webauth',
         };
     }
+    try {
+        $entryUUID = ldap->search(
+            base => "ou=Users,dc=csh,dc=rit,dc=edu",
+            filter => "uid=".escap_filter_value($user),
+            attrs => ['entryUUID'],
+            scope => 'one',
+        )->shift_entry->get('entryUUID');
+    } or $entryUUID='error'
 
     return template 'upload.tt', {
         user => $user,
+        entryUUID => $entryUUID
     };
 };
 
