@@ -1,7 +1,7 @@
 <div class="row">
 <div class="small-3 offset-1 columns panel">
         <h5 class="small">Current avatar</h5>
-        <img src="avatar.csh.rit.edu/[% uuid %].jpg">
+        <img src="avatar.csh.rit.edu/[% entryUUID %].jpg">
     </div>
 
 <div class="small-8 columns panel">    
